@@ -60,7 +60,7 @@ class Login extends React.Component {
           />
           <div className="login__actions">
             <Button type="submit"> Ingresar</Button>
-            <Button onClick={loginWithGoogle} isGoogleLogin> Ingresar con Google</Button>
+            <Button type='button' onClick={loginWithGoogle} isGoogleLogin> Ingresar con Google</Button>
           </div>
         </form>
       </div>
