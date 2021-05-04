@@ -18,6 +18,11 @@
     overflow-y: scroll;
   }
 
+  &__empty {
+    font-size: 18px;
+    margin: 15px auto;
+  }
+
   button {
     margin-top: auto;
   }
