@@ -25,10 +25,24 @@
 
   &__quantity {
     @include widthCartItem;
+    display: flex;
     padding-left: 20px;
+  }
+
+  &__arrow {
+    cursor: pointer;
+  }
+
+  &__value {
+    margin: 0 10px;
   }
 
   &__price {
     @include widthCartItem;
+  }
+
+  &__remove {
+    padding-left: 12px;
+    cursor: pointer;
   }
 }
