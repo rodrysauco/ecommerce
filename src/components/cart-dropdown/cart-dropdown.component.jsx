@@ -7,8 +7,9 @@ import { withRouter } from 'react-router-dom';
 import Button from '../button/button.component';
 import CartItem from '../cart-item/cart-item.component';
 import { selectCartItems } from '../../redux/cart/cart.selectors';
+import { toggleCart } from '../../redux/cart/cart.actions'
 
-const CartDropdown = ({ cartItems, history }) => (
+const CartDropdown = ({ cartItems, history, dispatch }) => (
   <div className="cart-dropdown">
     <div className="cart-dropdown__items">
       {cartItems.length ?
@@ -18,7 +19,10 @@ const CartDropdown = ({ cartItems, history }) => (
           <span className="cart-dropdown__empty">Carro vacío</span>)
       }
     </div>
-    <Button onClick={()=> history.push('/checkout')}> Ir al Carrito</Button>
+    <Button onClick={() => {
+      history.push('/checkout');
+      dispatch(toggleCart())
+    }}> Ir al Carrito</Button>
   </div>
 );
 

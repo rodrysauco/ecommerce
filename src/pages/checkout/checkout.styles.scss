@@ -1,4 +1,4 @@
-.checkout{
+.checkout {
   width: 55%;
   min-height: 90vh;
   display: flex;
@@ -15,6 +15,17 @@
   }
 
   &__blocks {
-    
+    text-transform: capitalize;
+    width: 23%;
+
+    &:last-child {
+      width: 8%
+    }
+  }
+
+  &__total {
+    margin-top: 30px;
+    margin-left: auto;
+    font-size: 36px;
   }
 }
