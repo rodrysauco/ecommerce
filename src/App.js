@@ -53,8 +53,8 @@ class App extends React.Component {
             path='/login'
             render={
               () => this.props.currentUser ?
-              (<Redirect to='/' />) :
-              (<LoginPage />)}
+                (<Redirect to='/' />) :
+                (<LoginPage />)}
           />
         </Switch>
       </div>
