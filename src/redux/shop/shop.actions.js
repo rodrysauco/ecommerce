@@ -12,9 +12,7 @@ export const fetchCollectionsStartAsync = () => {
     collectionRef.get().then(snapshot => {
       const collections = convertCollectionSnapshotToMap(snapshot);
       dispatch(fetchCollectionsSuccess(collections));
-    }).catch(error => (
-      dispatch(fetchCollectionsFailure(error.message))
-    ));
+    }).catch(error => dispatch(fetchCollectionsFailure(error.message)));
   }
 }
 
