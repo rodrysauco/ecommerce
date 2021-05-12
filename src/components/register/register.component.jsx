@@ -1,12 +1,13 @@
 import React from "react";
+import { connect } from 'react-redux';
 
 import FormInput from "../form-input/form-input.component";
 import Button from '../button/button.component';
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+import { signUpStart } from "../../redux/user/user.actions";
 
 import './register.styles.scss';
 
-export default class Register extends React.Component {
+class Register extends React.Component {
   constructor() {
     super();
 
@@ -21,24 +22,13 @@ export default class Register extends React.Component {
   handleSubmit = async event => {
     event.preventDefault();
     const { displayName, email, password, confirmPassword } = this.state;
+    const { signUpStart } = this.props;
 
     if (password !== confirmPassword) {
       alert('Las contraseñas no coinciden');
       return;
-    }
-
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(email, password);
-      await createUserProfileDocument(user, { displayName });
-      this.setState({
-        displayName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-      })
-    } catch (error) {
-      console.error('Error al registrar usuario', error.message);
-    }
+    };
+    signUpStart({ displayName, email, password });
   };
 
   handleChange = event => {
@@ -90,4 +80,10 @@ export default class Register extends React.Component {
       </div>
     )
   }
-}
+};
+
+const mapDispatchToProps = dispatch => ({
+  signUpStart: (userCredentials) => dispatch(signUpStart(userCredentials))
+});
+
+export default connect(null, mapDispatchToProps)(Register);
