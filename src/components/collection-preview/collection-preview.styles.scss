@@ -1,15 +1,26 @@
 .collection-preview {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
 
-    &__title {
-        font-size: 28px;
-        margin-bottom: 25px;
-    }
+  &__title {
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+@media screen and(max-width:800px) {
+  .collection-preview {
+    align-items: center;
 
     &__content {
-        display: flex;
-        justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
     }
+  }
 }

@@ -7,12 +7,23 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+
+  @media screen and (max-width:800px) {
+    height: 60px;
+    padding: 10px;
+    margin-bottom: 20px
+  }
 `;
 
 export const LogoContainer = styled(Link)`
   height: 100%;
   width: 70px;
   padding: 25px;
+  
+  @media screen and (max-width:800px) {
+    padding: 0;
+    width: 50px;
+  }
 `;
 
 export const LinksContainer = styled.div`
@@ -21,11 +32,15 @@ export const LinksContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  
+  @media screen and (max-width:800px) {
+    width: 80%;
+  }
 `;
 
 export const LinkStyled = styled(Link)`
-padding: 10px 15px;
-text-decoration: none;
-color: black;
-cursor: pointer;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
 `;

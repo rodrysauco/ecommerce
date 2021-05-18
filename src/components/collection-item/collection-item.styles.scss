@@ -32,17 +32,40 @@
     opacity: 0.7;
     position: absolute;
     top: 255px;
-    display:none;
+    display: none;
   }
 
   &:hover {
+    & .collection-item__image {
+      opacity: 0.8;
+    }
+
+    & button {
+      display: flex;
+    }
+  }
+
+}
+
+@media screen and(max-width:800px) {
+  .collection-item {
+    width: 40vw;
+
+    &:hover {
       & .collection-item__image {
-        opacity: 0.8;
+        opacity: unset;
       }
 
       & button {
-          display: flex;
+        display: flex;
       }
-  }
+    }
 
+    & button {
+      display: block;
+      opacity: 0.9;
+      min-width: unset;
+      padding: 0 10px;
+    }
+  }
 }
