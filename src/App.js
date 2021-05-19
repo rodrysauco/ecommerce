@@ -1,18 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import HomePage from './pages/homepage/homepage.component';
-import ShopPage from './pages/shop/shop.component';
-import LoginPage from './pages/login/login.component';
-
 import Header from './components/header/header.component';
 import { selectCurrentUser } from './redux/user/user.selectors';
-import CheckoutPage from './pages/checkout/checkout.component';
 import { checkUserSession } from './redux/user/user.actions';
 
 import { GlobalStyle } from './global.styles';
+import ErrorBoundary from './components/error-boundary/error-boundary.component';
+
+const HomePage = lazy(() => import('./pages/homepage/homepage.component'));
+const ShopPage = lazy(() => import('./pages/shop/shop.component'));
+const LoginPage = lazy(() => import('./pages/login/login.component'));
+const CheckoutPage = lazy(() => import('./pages/checkout/checkout.component'))
+
 
 const App = ({ checkUserSession, currentUser }) => {
 
@@ -25,17 +27,21 @@ const App = ({ checkUserSession, currentUser }) => {
       <GlobalStyle />
       <Header />
       <Switch>
-        <Route exact path='/' component={HomePage} />
-        <Route path='/shop' component={ShopPage} />
-        <Route path='/checkout' component={CheckoutPage} />
-        <Route
-          exact
-          path='/login'
-          render={
-            () => currentUser ?
-              (<Redirect to='/' />) :
-              (<LoginPage />)}
-        />
+        <ErrorBoundary>
+          <Suspense fallback={<div>...Cargando</div>}>
+            <Route exact path='/' component={HomePage} />
+            <Route path='/shop' component={ShopPage} />
+            <Route path='/checkout' component={CheckoutPage} />
+            <Route
+              exact
+              path='/login'
+              render={
+                () => currentUser ?
+                  (<Redirect to='/' />) :
+                  (<LoginPage />)} 
+            />
+          </Suspense>
+        </ErrorBoundary>
       </Switch>
     </div>
   );
